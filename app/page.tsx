@@ -32,7 +32,7 @@ export default function Home() {
           </p>
         </div>
 
-        <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
+        <span className="rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-800 dark:bg-zinc-900 dark:text-zinc-100">
           17+ let zkušeností v UX designu
         </span>
 
@@ -42,7 +42,7 @@ export default function Home() {
               key={contact.label}
               className="flex items-center justify-between gap-4 border-t border-zinc-100 pt-3 dark:border-zinc-900"
             >
-              <dt className="text-xs text-zinc-500 dark:text-zinc-500">
+              <dt className="text-sm text-zinc-600 dark:text-zinc-400">
                 {contact.label}
               </dt>
               <dd>
@@ -50,7 +50,7 @@ export default function Home() {
                   href={contact.href}
                   target={contact.href.startsWith("http") ? "_blank" : undefined}
                   rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="text-sm font-medium text-black hover:underline dark:text-zinc-50"
+                  className="text-sm font-semibold text-zinc-900 hover:underline dark:text-white"
                 >
                   {contact.value}
                 </a>
