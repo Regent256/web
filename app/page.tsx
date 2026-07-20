@@ -1,49 +1,64 @@
-const features = [
+import Image from "next/image";
+
+const contacts = [
+  { label: "Email", value: "info@tomasregner.cz", href: "mailto:info@tomasregner.cz" },
+  { label: "Telefon", value: "+420 739 418 088", href: "tel:+420739418088" },
   {
-    title: "Next.js",
-    description: "React framework s App Routerem a serverovým renderováním.",
-  },
-  {
-    title: "React",
-    description: "Komponentová knihovna pro stavbu uživatelských rozhraní.",
-  },
-  {
-    title: "Tailwind CSS",
-    description: "Utility-first styly bez psaní vlastního CSS souboru.",
+    label: "LinkedIn",
+    value: "linkedin.com/in/tomas-regner",
+    href: "https://www.linkedin.com/in/tomas-regner/",
   },
 ];
 
 export default function Home() {
   return (
-    <>
-      <section className="flex flex-1 flex-col items-center justify-center gap-4 bg-zinc-50 px-6 py-24 text-center dark:bg-black">
-        <h1 className="animate-fade-in-up text-4xl font-semibold tracking-tight text-black dark:text-zinc-50 sm:text-6xl">
-          Hello, world! 👋
-        </h1>
-        <p className="animate-fade-in-up max-w-md text-lg text-zinc-600 [animation-delay:150ms] dark:text-zinc-400">
-          Next.js + React + Tailwind CSS — první stránka projektu{" "}
-          <span className="font-medium text-black dark:text-zinc-50">web</span>.
-        </p>
-      </section>
+    <section className="flex flex-1 items-center justify-center px-6 py-16">
+      <div className="animate-fade-in-up flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl border border-zinc-200 p-8 text-center dark:border-zinc-800">
+        <Image
+          src="/tomas-regner.png"
+          alt="Tomáš Regner"
+          width={128}
+          height={128}
+          priority
+          className="h-32 w-32 rounded-full object-cover"
+        />
 
-      <section className="border-t border-zinc-200 bg-white px-6 py-20 dark:border-zinc-800 dark:bg-black">
-        <div className="mx-auto grid max-w-4xl gap-8 sm:grid-cols-3">
-          {features.map((feature, index) => (
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
+            Tomáš Regner
+          </h1>
+          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+            UX Designer &amp; E-commerce konzultant
+          </p>
+        </div>
+
+        <span className="rounded-full bg-zinc-100 px-3 py-1 text-xs font-medium text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
+          17+ let zkušeností v UX designu
+        </span>
+
+        <dl className="flex w-full flex-col gap-3 text-left">
+          {contacts.map((contact) => (
             <div
-              key={feature.title}
-              className="animate-fade-in-up rounded-xl border border-zinc-200 p-6 text-left dark:border-zinc-800"
-              style={{ animationDelay: `${index * 150}ms` }}
+              key={contact.label}
+              className="flex items-center justify-between gap-4 border-t border-zinc-100 pt-3 dark:border-zinc-900"
             >
-              <h2 className="text-lg font-semibold text-black dark:text-zinc-50">
-                {feature.title}
-              </h2>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                {feature.description}
-              </p>
+              <dt className="text-xs text-zinc-500 dark:text-zinc-500">
+                {contact.label}
+              </dt>
+              <dd>
+                <a
+                  href={contact.href}
+                  target={contact.href.startsWith("http") ? "_blank" : undefined}
+                  rel={contact.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="text-sm font-medium text-black hover:underline dark:text-zinc-50"
+                >
+                  {contact.value}
+                </a>
+              </dd>
             </div>
           ))}
-        </div>
-      </section>
-    </>
+        </dl>
+      </div>
+    </section>
   );
 }

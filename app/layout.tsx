@@ -15,8 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "web",
-  description: "Hello world stránka postavená na Next.js, React a Tailwind CSS",
+  title: "Tomáš Regner — UX & e-commerce konzultant",
+  description:
+    "Vizitka Tomáše Regnera, UX designéra a e-commerce konzultanta.",
 };
 
 export default function RootLayout({
@@ -26,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="cs"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
