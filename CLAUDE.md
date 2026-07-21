@@ -31,18 +31,13 @@ If a shell reports `node`/`npm`/`brew` as not found, Homebrew's bin directory is
 
 ## SEO
 
-- `app/layout.tsx` holds the full `Metadata` object: `metadataBase` (set to the production domain above), title template, OpenGraph (`type: "profile"`), Twitter card, `alternates.canonical`, and explicit `robots` directives. Update the `siteUrl`/`title`/`description` consts at the top of the file rather than duplicating strings elsewhere.
-- Structured data: a `Person` JSON-LD block (schema.org) is inlined in `app/layout.tsx` via a `<script type="application/ld+json">`. It covers name, jobTitle, description, url, image, email, telephone, `sameAs` (LinkedIn), and `knowsAbout`. Keep this in sync with the visible page content in `app/page.tsx` — search engines cross-check the two.
-- Favicon/OG images are generated dynamically (not static files) via Next's Metadata Route conventions:
-  - `app/icon.tsx` — 32×32 favicon ("TR" monogram, matches `Header.tsx`)
-  - `app/apple-icon.tsx` — 180×180 Apple touch icon
-  - `app/opengraph-image.tsx` — 1200×630 OG/Twitter share image
-  - There is no static `app/favicon.ico` anymore — it was the unused default Next.js logo and was removed in favor of the generated icon above. Edit these `.tsx` files (not an image editor) to change the icon design.
-- `app/sitemap.ts` and `app/robots.ts` generate `/sitemap.xml` and `/robots.txt` (both reference the production domain directly — update if the domain ever changes).
-- The profile photo `public/tomas-regner.png` is intentionally named after the person for image-search relevance; its `alt` text in `page.tsx` and the `image` field in the JSON-LD both should keep referencing this filename if it's ever replaced.
+**See `seo.md` for the full picture** — what's implemented, why, and a
+checklist to follow for every new page/route added to this site. Read it
+before adding any subpage; don't reinvent the SEO approach per-page.
 
-### Future authority-building (not yet implemented)
+Quick pointers to where things live:
 
-- Consider adding more `sameAs` entries to the Person JSON-LD as other verified profiles appear (GitHub, Behance, X/Twitter).
-- If Google Search Console / Bing Webmaster Tools verification is set up, add the verification meta tag via `metadata.verification` in `layout.tsx`.
-- A future articles/blog section would be the main lever for topical authority — no scaffolding for this exists yet; it would need new routes, not just metadata changes.
+- `app/layout.tsx` — site-wide `Metadata` (title template, OpenGraph, Twitter, `alternates.canonical`, `robots`). `metadataBase` is the production domain above.
+- `app/page.tsx` — homepage-only JSON-LD (`Person`, `Organization`, `WebSite`). Deliberately kept out of `layout.tsx` so future subpages don't inherit homepage-specific schema; subpages should add their own `BreadcrumbList` instead.
+- `app/icon.tsx`, `app/apple-icon.tsx`, `app/opengraph-image.tsx` — dynamically generated (not static files) favicon/Apple icon/OG image, "TR" monogram matching `Header.tsx`. There is no static `app/favicon.ico` anymore.
+- `app/sitemap.ts`, `app/robots.ts` — generate `/sitemap.xml` and `/robots.txt`. Sitemap entries are a manually maintained list, not auto-derived from routes — add new pages by hand.

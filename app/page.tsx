@@ -1,5 +1,51 @@
 import Image from "next/image";
 
+const siteUrl = "https://www.tomasregner.cz";
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Tomáš Regner",
+  jobTitle: ["UX Designer", "UX architekt", "E-commerce konzultant", "Projekt manager"],
+  description:
+    "UX designér, UX architekt a e-commerce konzultant s 17+ lety zkušeností v UX designu.",
+  url: siteUrl,
+  image: `${siteUrl}/tomas-regner.png`,
+  email: "info@tomasregner.cz",
+  telephone: "+420739418088",
+  sameAs: ["https://www.linkedin.com/in/tomas-regner/"],
+  knowsAbout: ["UX design", "UX architektura", "E-commerce", "Projektové řízení"],
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Tomáš Regner",
+  url: siteUrl,
+  logo: `${siteUrl}/tomas-regner.png`,
+  image: `${siteUrl}/tomas-regner.png`,
+  email: "info@tomasregner.cz",
+  telephone: "+420739418088",
+  identifier: {
+    "@type": "PropertyValue",
+    name: "IČO",
+    value: "03356116",
+  },
+  founder: {
+    "@type": "Person",
+    name: "Tomáš Regner",
+  },
+  sameAs: ["https://www.linkedin.com/in/tomas-regner/"],
+};
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Tomáš Regner",
+  url: siteUrl,
+  inLanguage: "cs-CZ",
+};
+
 const contacts = [
   { label: "Email", value: "info@tomasregner.cz", href: "mailto:info@tomasregner.cz" },
   { label: "Telefon", value: "+420 739 418 088", href: "tel:+420739418088" },
@@ -13,6 +59,18 @@ const contacts = [
 export default function Home() {
   return (
     <section className="flex flex-1 items-center justify-center px-6 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       <div className="animate-fade-in-up flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl border border-zinc-200 p-8 text-center dark:border-zinc-800">
         <Image
           src="/tomas-regner.png"
