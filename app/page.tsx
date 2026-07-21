@@ -16,7 +16,7 @@ export default function Home() {
       <div className="animate-fade-in-up flex w-full max-w-sm flex-col items-center gap-6 rounded-2xl border border-zinc-200 p-8 text-center dark:border-zinc-800">
         <Image
           src="/tomas-regner.png"
-          alt="Tomáš Regner"
+          alt="Tomáš Regner, UX designer a e-commerce konzultant"
           width={128}
           height={128}
           priority
